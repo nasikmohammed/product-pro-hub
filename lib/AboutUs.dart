@@ -1,7 +1,8 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:miniproject_1/ScreenHome.dart';
+
+import 'View/screenhome.dart';
+
 
 class ScreenAboutUs extends StatelessWidget {
   const ScreenAboutUs({super.key});
@@ -22,7 +23,9 @@ class ScreenAboutUs extends StatelessWidget {
         child: Row(
           children: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
                 icon: Icon(
                   Icons.arrow_back_ios,
                   size: 30,
