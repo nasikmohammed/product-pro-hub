@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:miniproject_1/Model/provider.dart';
+import 'package:miniproject_1/View/claimwarranty.dart';
 import 'package:miniproject_1/View/registerwarranty.dart';
 import 'package:provider/provider.dart';
 
@@ -116,7 +117,13 @@ class ScreenRegProduct extends StatelessWidget {
                               Radius.circular(20),
                             ),
                           )),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return ScreenClaimWarranty();
+                              },
+                            ));
+                          },
                           icon: Icon(Icons.add,
                               size: 17, color: Color.fromARGB(255, 190, 13, 0)),
                           label: Text(

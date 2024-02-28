@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:miniproject_1/View/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ScreenProfile extends StatelessWidget {
   const ScreenProfile({super.key});
@@ -26,39 +29,32 @@ class ScreenProfile extends StatelessWidget {
                     onPressed: () {},
                     icon: Icon(
                       Icons.arrow_back_ios,
-                      size: 30,
+                      size: 20,
                     )),
                 Text(
                   "Back",
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 78, 78, 80),
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                  style: GoogleFonts.teko(fontSize: 20),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 300, top: 50),
+            padding: const EdgeInsets.only(right: 270, top: 50),
             child: Text(
               "Your",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w400),
+              style: GoogleFonts.teko(fontSize: 30),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(
-              right: 280,
+              right: 260,
             ),
             child: Text(
               "Profile",
-              style: TextStyle(
-                color: Color.fromARGB(255, 72, 91, 126),
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
+              style: GoogleFonts.teko(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green),
             ),
           ),
           Stack(
@@ -84,29 +80,37 @@ class ScreenProfile extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 50, left: 30),
-            child: Text("Your Name",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 0),
+            child: Text(
+              "Your Name",
+              style: GoogleFonts.teko(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                )),
+                  color: Color.fromARGB(255, 0, 0, 0)),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 0, left: 30),
-            child: Text("User Id:00000",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 65, 62, 62),
-                  fontSize: 18,
+            child: Text(
+              "User Id:00000",
+              style: GoogleFonts.teko(
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
-                )),
+                  color: Color.fromARGB(255, 0, 0, 0)),
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.edit),
+              SizedBox(
+                width: 10,
+              ),
               Text(
                 "Edit",
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                style: GoogleFonts.teko(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0)),
               )
             ],
           ),
@@ -120,10 +124,15 @@ class ScreenProfile extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       backgroundColor: Color.fromARGB(255, 182, 12, 0)),
-                  onPressed: () {},
+                  onPressed: () {
+                    logout(context);
+                  },
                   child: Text(
                     "LOGOUT",
-                    style: TextStyle(color: Colors.white),
+                    style: GoogleFonts.teko(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 255, 255, 255)),
                   )),
             ),
           )
@@ -131,4 +140,19 @@ class ScreenProfile extends StatelessWidget {
       ),
     );
   }
+}
+
+logout(context) async {
+  final shareout = await SharedPreferences.getInstance();
+
+  final name = shareout.remove("name");
+  final mail = shareout.remove("mail");
+  final phone = shareout.remove("phone");
+  final password = shareout.remove("password");
+
+  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+    builder: (context) {
+      return ScreenLogin();
+    },
+  ), (route) => false);
 }

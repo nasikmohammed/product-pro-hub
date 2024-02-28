@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:miniproject_1/View/screenhome.dart';
 
 class ScreenRequestSub extends StatelessWidget {
   const ScreenRequestSub({super.key});
@@ -10,65 +12,58 @@ class ScreenRequestSub extends StatelessWidget {
   Widget build(BuildContext context) {
     String tick = "lib/assets/tick.jpeg";
     return Scaffold(
-      body: SafeArea(
-          child: Column(
+      backgroundColor: Color.fromARGB(255, 245, 242, 242),
+      body: Column(
         children: [
           Container(
             decoration: BoxDecoration(
                 border: Border.all(
                   color: Color.fromARGB(255, 235, 232, 232),
                 ),
-                color: Color.fromARGB(255, 244, 241, 241),
+                color: Color.fromARGB(255, 239, 235, 235),
                 borderRadius: BorderRadius.all(Radius.circular(40))),
             width: 450,
             height: 150,
-            child: Row(
+            child: Column(
               children: [
                 SizedBox(
-                  width: 10,
+                  height: 70,
                 ),
-                Icon(Icons.arrow_back_ios_new_sharp),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 100),
-                      child: Text(
-                        "Home",
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 61, 69, 109),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25),
-                      ),
+                    SizedBox(
+                      width: 20,
                     ),
+                    Icon(Icons.arrow_back_ios_new_sharp),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text("Home",
+                        style: GoogleFonts.teko(
+                          fontSize: 30,
+                        )),
                   ],
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 80, left: 120, right: 120),
+            padding: const EdgeInsets.only(top: 160, left: 120, right: 120),
             child: Image.asset(tick),
           ),
           SizedBox(
             height: 10,
           ),
-          Text(
-            "Requested submitted!",
-            style: TextStyle(
-                color: Color.fromARGB(255, 0, 0, 0),
-                fontSize: 28,
-                fontWeight: FontWeight.bold),
-          ),
-          Text(
-            "We will contact you shortly.",
-            style: TextStyle(
-                color: Color.fromARGB(255, 55, 54, 54),
-                fontSize: 17,
-                fontWeight: FontWeight.bold),
-          ),
+          Text("Requested submitted!",
+              style:
+                  GoogleFonts.teko(fontSize: 30, fontWeight: FontWeight.bold)),
+          Text("We will contact you shortly.",
+              style: GoogleFonts.teko(
+                fontSize: 20,
+              )),
           SizedBox(
-            height: 90,
+            height: 120,
           ),
           SizedBox(
             width: 299,
@@ -78,14 +73,19 @@ class ScreenRequestSub extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     backgroundColor: Color.fromARGB(255, 47, 46, 46)),
-                onPressed: () {},
-                child: Text(
-                  "Done",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                )),
+                onPressed: () {
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                    builder: (context) {
+                      return ScreenHome();
+                    },
+                  ), (route) => false);
+                },
+                child: Text("Done",
+                    style:
+                        GoogleFonts.teko(fontSize: 30, color: Colors.white))),
           )
         ],
-      )),
+      ),
     );
   }
 }

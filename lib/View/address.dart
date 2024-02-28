@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:miniproject_1/Model/provider.dart';
 import 'package:miniproject_1/View/addaddress.dart';
+import 'package:provider/provider.dart';
 
 class ScreenAddress extends StatelessWidget {
   ScreenAddress({super.key});
   int count = 0;
   @override
   Widget build(BuildContext context) {
+    final adrProvider = Provider.of<RegisterProvider>(context);
     List button = [
       Padding(
         padding: const EdgeInsets.only(top: 5),
@@ -18,7 +22,8 @@ class ScreenAddress extends StatelessWidget {
               onPressed: () {},
               child: Text(
                 "SELECTED",
-                style: TextStyle(color: Colors.white),
+                style: GoogleFonts.teko(
+                    fontSize: 15, color: Color.fromARGB(255, 255, 255, 255)),
               )),
         ),
       ),
@@ -36,20 +41,25 @@ class ScreenAddress extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(40))),
             width: 450,
             height: 150,
-            child: Row(
+            child: Column(
               children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      size: 30,
-                    )),
-                Text(
-                  "Back",
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 78, 78, 80),
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                SizedBox(
+                  height: 69,
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          size: 20,
+                        )),
+                    Text(
+                      "Back",
+                      style: GoogleFonts.teko(
+                          fontSize: 30, color: Color.fromARGB(255, 39, 34, 34)),
+                    )
+                  ],
                 ),
               ],
             ),
@@ -60,7 +70,11 @@ class ScreenAddress extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 50, top: 25, right: 260),
                 child: Text(
                   "Your",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.teko(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
                 ),
               ),
               Row(
@@ -69,10 +83,11 @@ class ScreenAddress extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 50, top: 50),
                     child: Text(
                       "Address",
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Color.fromARGB(255, 36, 104, 83),
-                          fontWeight: FontWeight.bold),
+                      style: GoogleFonts.teko(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 36, 104, 83),
+                      ),
                     ),
                   ),
                   Padding(
@@ -94,14 +109,47 @@ class ScreenAddress extends StatelessWidget {
             child: ListView.separated(
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text("Address Name-Name,Place"),
+                  title: Row(
+                    children: [
+                      Text(
+                        adrProvider.adressownerName!,
+                        style: GoogleFonts.teko(),
+                      ),
+                      Text(
+                        adrProvider.adrdessplace!,
+                        style: GoogleFonts.teko(),
+                      )
+                    ],
+                  ),
                   subtitle: Padding(
-                    padding: const EdgeInsets.only(right: 200),
+                    padding: const EdgeInsets.only(right: 150),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Address line 1,Area",
-                          style: TextStyle(color: Colors.black),
+                          adrProvider.addresscity!,
+                          style: GoogleFonts.teko(),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${adrProvider.addresstate!}  ",
+                              style: GoogleFonts.teko(),
+                            ),
+                            Text(
+                              adrProvider.addressArea!,
+                              style: GoogleFonts.teko(),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          adrProvider.addresspincode!,
+                          style: GoogleFonts.teko(),
+                        ),
+                        Text(
+                          adrProvider.addressPhone!,
+                          style: GoogleFonts.teko(),
                         ),
                         button[index]
                       ],
@@ -123,7 +171,7 @@ class ScreenAddress extends StatelessWidget {
             ),
             label: Text(
               "ADD NEW",
-              style: TextStyle(color: Colors.white),
+              style: GoogleFonts.teko(color: Colors.white, fontSize: 20),
             ),
             style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(

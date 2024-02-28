@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:miniproject_1/View/address.dart';
 import 'package:miniproject_1/View/profile.dart';
 
@@ -31,14 +32,12 @@ class ScreenAccount extends StatelessWidget {
                     },
                     icon: Icon(
                       Icons.arrow_back_ios,
-                      size: 30,
+                      size: 25,
                     )),
                 Text(
                   "Account",
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 76, 83, 126),
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                  style: GoogleFonts.teko(
+                      fontSize: 30, color: Color.fromARGB(255, 27, 25, 25)),
                 ),
               ],
             ),
@@ -78,10 +77,10 @@ class ScreenAccount extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 25, right: 60),
                           child: Text(
                             "Profile",
-                            style: TextStyle(
-                                color: Colors.white,
+                            style: GoogleFonts.teko(
                                 fontSize: 20,
-                                fontWeight: FontWeight.w500),
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 255, 255, 255)),
                           ),
                         )
                       ],
@@ -119,10 +118,10 @@ class ScreenAccount extends StatelessWidget {
                           padding: const EdgeInsets.only(right: 50, top: 25),
                           child: Text(
                             "Address",
-                            style: TextStyle(
-                                color: Colors.white,
+                            style: GoogleFonts.teko(
                                 fontSize: 20,
-                                fontWeight: FontWeight.w500),
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 255, 255, 255)),
                           ),
                         )
                       ],

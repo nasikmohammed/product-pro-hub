@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:miniproject_1/AboutUs.dart';
+import 'package:miniproject_1/View/AboutUs.dart';
 
 import 'package:miniproject_1/View/account.dart';
 import 'package:miniproject_1/View/featuredproducts.dart';
@@ -57,12 +57,15 @@ class _ScreenShopRegState extends State<ScreenHome> {
                             CupertinoIcons.person_crop_circle_fill,
                             color: Color.fromARGB(255, 80, 80, 80),
                           ),
+                          SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             "Account",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 53, 52, 52),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
+                            style: GoogleFonts.teko(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 110, 113, 110)),
                           ),
                         ],
                       ),
@@ -88,36 +91,16 @@ class _ScreenShopRegState extends State<ScreenHome> {
                   },
                   child: Text(
                     "About us",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 53, 52, 52),
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
+                    style: GoogleFonts.teko(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 106, 109, 106)),
                   ),
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: 50,
-                width: 250,
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 234, 230, 230),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15))),
-                  onPressed: () {
-                    logout();
-                  },
-                  child: Text(
-                    "Logout",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 53, 52, 52),
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-              )
             ],
           ),
         ),
@@ -309,20 +292,5 @@ class _ScreenShopRegState extends State<ScreenHome> {
         ),
       )),
     );
-  }
-
-  logout() async {
-    final shareout = await SharedPreferences.getInstance();
-
-    final name = shareout.remove("name");
-    final mail = shareout.remove("mail");
-    final phone = shareout.remove("phone");
-    final password = shareout.remove("password");
-
-    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-      builder: (context) {
-        return ScreenLogin();
-      },
-    ), (route) => false);
   }
 }
